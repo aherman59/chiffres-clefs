@@ -29,7 +29,7 @@ def graphe_nb_ventes(code_dep, nom_dep):
     fig = px.bar(indicateurs, 
                 x='annee', 
                 y=['nbtrans_cod111', 'nbtrans_cod121'], 
-                title = f"Evolution annuelle du nombre de ventes de logements {nom_dep}", 
+                title = f"Evolution annuelle du nombre de ventes de logements pour {nom_dep}", 
                 labels={"annee" : "Année de mutation", 
                         "value" : "Nombre de ventes",},
                 )
@@ -48,13 +48,16 @@ def graphe_nb_ventes(code_dep, nom_dep):
 
 st.set_page_config(page_title="Chiffre-clefs", page_icon=None, layout="centered",)
 
+st.sidebar.title("Chiffre-clefs")
+
+bdd = st.sidebar.selectbox("Base de données", ["Fichiers fonciers", "DV3F", "Lovac"])
+
 departements = get_departements()
 departement = st.sidebar.selectbox("Choix du département", [d["nom"] for d in departements])
 coddep = [d["code"] for d in departements if d["nom"] == departement][0]
 
-st.title(" du trait de côte")
-st.subheader("Nombre de ventes de logements")
 
+st.subheader("Nombre de ventes de logements")
 with st.spinner("Chargement..."):
     fig = graphe_nb_ventes(coddep, departement)
     st.plotly_chart(fig, use_container_width=True)
