@@ -1,5 +1,4 @@
 import requests
-import folium
 import pandas as pd
 import plotly.express as px
 import streamlit as st
@@ -47,7 +46,7 @@ def graphe_nb_ventes(code_dep, nom_dep):
 
 ######
 
-st.set_page_config(page_title="Erosion", page_icon=None, layout="centered",)
+st.set_page_config(page_title="Chiffre-clefs", page_icon=None, layout="centered",)
 
 departements = get_departements()
 departement = st.sidebar.selectbox("Choix du département", [d["nom"] for d in departements])
