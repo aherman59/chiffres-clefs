@@ -62,3 +62,5 @@ with st.spinner("Chargement..."):
     fig = graphe_nb_ventes(coddep, departement)
     st.plotly_chart(fig, use_container_width=True)
 
+df = pd.read_csv("test.csv")
+st.dataframe(df)
